@@ -1,0 +1,13 @@
+/node_modules
+/dist/
+/PHPiniEditor-win32-x64/
+*.log
+*.exe
+*.msi
+*.zip
+*.7z
+.cache/
+.DS_Store
+Thumbs.db
+.vscode/
+/package-lock.json

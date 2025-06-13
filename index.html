@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>php.ini Editor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader" class="loader" style="display: none">
+      <div class="spinner"></div>
+      <p>Chargement...</p>
+    </div>
+
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <h1>
+          <span class="logo">⚙️</span>
+          php.ini Editor
+          <span class="version">v1.2.9</span>
+        </h1>
+        <div class="header-actions">
+          <button onclick="selectPhpIni()" class="btn-secondary">
+            📁 Sélectionner php.ini
+          </button>
+          <div id="xdebugIndicator" class="status-indicator disabled">
+            ● DÉSACTIVÉ
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="tabs">
+      <button class="tablink active" onclick="openTab(event, 'xdebug')">
+        🐛 Xdebug
+      </button>
+      <button class="tablink" onclick="openTab(event, 'extensions')">
+        🔌 Extensions
+      </button>
+      <button class="tablink" onclick="openTab(event, 'config')">
+        ⚙️ Configuration
+      </button>
+      <button class="tablink" onclick="openTab(event, 'sauvegarde')">
+        💾 Sauvegarde
+      </button>
+      <button class="tablink" onclick="openTab(event, 'infos')">
+        ℹ️ Informations
+      </button>
+      <button class="tablink" onclick="openTab(event, 'phpinfo')">
+        📋 PHP Info
+      </button>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Onglet Xdebug -->
+      <div id="xdebug" class="tabcontent">
+        <div class="tab-header">
+          <h2>🐛 Contrôle de Xdebug</h2>
+          <p class="tab-description">
+            Activez ou désactivez Xdebug pour le débogage PHP
+          </p>
+        </div>
+
+        <div class="control-group">
+          <div class="button-group">
+            <button onclick="toggleXdebug(true)" class="btn-success">
+              ✅ Activer Xdebug
+            </button>
+            <button onclick="toggleXdebug(false)" class="btn-danger">
+              ❌ Désactiver Xdebug
+            </button>
+            <button onclick="getStatus()" class="btn-info">
+              🔍 Vérifier le statut
+            </button>
+          </div>
+        </div>
+
+        <div class="output-container">
+          <h3>Sortie :</h3>
+          <pre id="xdebugOutput" class="output">
+Cliquez sur "Vérifier le statut" pour voir l'état actuel de Xdebug</pre
+          >
+        </div>
+      </div>
+
+      <!-- Onglet Extensions -->
+      <div id="extensions" class="tabcontent">
+        <div class="tab-header">
+          <h2>🔌 Gestion des Extensions</h2>
+          <p class="tab-description">
+            Gérez les extensions PHP installées sur votre système
+          </p>
+        </div>
+
+        <!-- Section Extensions avancées -->
+        <div class="card">
+          <h3>Extensions disponibles</h3>
+          <div id="extensionsContainer">
+            <div class="loading-message">Chargement des extensions...</div>
+          </div>
+        </div>
+
+        <!-- Section Extensions manuelles -->
+        <div class="card">
+          <h3>Gestion manuelle</h3>
+          <div class="form-group">
+            <label for="extName">Nom de l'extension :</label>
+            <input
+              type="text"
+              id="extName"
+              placeholder="Ex: mysqli, curl, gd..."
+            />
+          </div>
+          <div class="button-group">
+            <button onclick="enableExt()" class="btn-success">
+              ✅ Activer Extension
+            </button>
+            <button onclick="disableExt()" class="btn-danger">
+              ❌ Désactiver Extension
+            </button>
+            <button onclick="listExt()" class="btn-info">
+              📋 Lister Extensions
+            </button>
+          </div>
+
+          <div class="output-container">
+            <h3>Sortie :</h3>
+            <pre id="extOutput" class="output">
+Les résultats s'afficheront ici...</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet Configuration -->
+      <div id="config" class="tabcontent">
+        <div class="tab-header">
+          <h2>⚙️ Configuration PHP</h2>
+          <p class="tab-description">
+            Modifiez les paramètres de configuration PHP
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Paramètres communs</h3>
+          <div class="form-group">
+            <label for="memory_limit">Limite mémoire (memory_limit) :</label>
+            <input
+              type="text"
+              id="memory_limit"
+              placeholder="Ex: 256M, 512M, 1G..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="max_execution_time"
+              >Temps d'exécution max (max_execution_time) :</label
+            >
+            <input
+              type="text"
+              id="max_execution_time"
+              placeholder="Ex: 30, 60, 300..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="upload_max_filesize"
+              >Taille max upload (upload_max_filesize) :</label
+            >
+            <input
+              type="text"
+              id="upload_max_filesize"
+              placeholder="Ex: 2M, 10M, 50M..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="post_max_size">Taille max POST (post_max_size) :</label>
+            <input
+              type="text"
+              id="post_max_size"
+              placeholder="Ex: 8M, 20M, 100M..."
+            />
+          </div>
+
+          <div class="button-group">
+            <button onclick="applyConfig()" class="btn-success">
+              ✅ Appliquer Configuration
+            </button>
+            <button onclick="resetConfig()" class="btn-danger">
+              🔄 Réinitialiser
+            </button>
+          </div>
+
+          <div class="output-container">
+            <h3>Sortie :</h3>
+            <pre id="configOutput" class="output">
+Les modifications s'afficheront ici...</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet Sauvegarde -->
+      <div id="sauvegarde" class="tabcontent">
+        <div class="tab-header">
+          <h2>💾 Sauvegarde & Restauration</h2>
+          <p class="tab-description">
+            Sauvegardez et restaurez votre configuration php.ini
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Gestion des sauvegardes</h3>
+          <div class="button-group">
+            <button onclick="backup()" class="btn-success">
+              💾 Créer une sauvegarde
+            </button>
+            <button onclick="restore()" class="btn-info">
+              🔄 Restaurer la sauvegarde
+            </button>
+          </div>
+
+          <div class="output-container">
+            <h3>Sortie :</h3>
+            <pre id="backupOutput" class="output">
+Les opérations de sauvegarde s'afficheront ici...</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet Informations -->
+      <div id="infos" class="tabcontent">
+        <div class="tab-header">
+          <h2>ℹ️ Informations Système</h2>
+          <p class="tab-description">
+            Consultez les informations sur PHP et votre système
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Informations PHP</h3>
+          <div class="button-group">
+            <button onclick="showPath()" class="btn-info">
+              📍 Afficher le chemin php.ini
+            </button>
+            <button onclick="getStatus()" class="btn-info">
+              🔍 Version PHP
+            </button>
+          </div>
+
+          <div class="output-container">
+            <h3>Sortie :</h3>
+            <pre id="infoOutput" class="output">
+Les informations système s'afficheront ici...</pre
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet PHP Info -->
+      <div id="phpinfo" class="tabcontent">
+        <div class="tab-header">
+          <h2>📋 PHP Info</h2>
+          <p class="tab-description">
+            Consultez les informations complètes de PHP
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="button-group">
+            <button onclick="runPhpInfo()" class="btn-info">
+              🚀 Générer PHP Info
+            </button>
+          </div>
+
+          <div class="output-container">
+            <h3>PHP Information :</h3>
+            <iframe id="phpinfoFrame" class="phpinfo-frame"></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Status Bar -->
+    <div id="statusBar" class="status-bar">
+      Prêt - Sélectionnez un fichier php.ini pour commencer
+    </div>
+
+    <!-- Scripts -->
+    <script src="renderer.js"></script>
+  </body>
+</html>

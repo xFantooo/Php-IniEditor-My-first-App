@@ -1,0 +1,16 @@
+{
+  "name": "php.ini-editor",
+  "version": "1.0.0",
+  "description": "Application Electron pour gérer php.ini et Xdebug",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-win": "electron-packager . PHPiniEditor --platform=win32 --arch=x64 --out=dist --overwrite --icon=icon.ico"
+  },
+  "author": "xFantooo",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.2.3",
+    "electron-packager": "^17.1.2"
+  }
+}
