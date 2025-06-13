@@ -1,98 +1,142 @@
 <div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="Php Ini Editor" />
-
-  &#xa0;
-
-  <!-- <a href="https://phpinieditor.netlify.app">Demo</a> -->
+  <img src="./.github/app.gif" alt="PHP.ini Editor" />
 </div>
 
-<h1 align="center">Php Ini Editor</h1>
+<h1 align="center">PHP.ini Editor</h1>
 
 <p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8">
-
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/php-ini-editor?color=56BEB8" /> -->
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/xFantooo/PHP.ini-Editor?color=56BEB8">
+  <img alt="Github language count" src="https://img.shields.io/github/languages/count/xFantooo/PHP.ini-Editor?color=56BEB8">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/xFantooo/PHP.ini-Editor?color=56BEB8">
+  <img alt="License" src="https://img.shields.io/github/license/xFantooo/PHP.ini-Editor?color=56BEB8">
 </p>
-
-<!-- Status -->
-
-<!-- <h4 align="center"> 
-	🚧  Php Ini Editor 🚀 Under construction...  🚧
-</h4> 
-
-<hr> -->
 
 <p align="center">
-  <a href="#dart-about">About</a> &#xa0; | &#xa0; 
-  <a href="#sparkles-features">Features</a> &#xa0; | &#xa0;
-  <a href="#rocket-technologies">Technologies</a> &#xa0; | &#xa0;
-  <a href="#white_check_mark-requirements">Requirements</a> &#xa0; | &#xa0;
-  <a href="#checkered_flag-starting">Starting</a> &#xa0; | &#xa0;
-  <a href="#memo-license">License</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+  A modern, user-friendly desktop application to view, edit, and manage your PHP configuration (php.ini) and extensions, built with Electron.
 </p>
 
-<br>
+<p align="center">
+  <a href="#features">Features</a> &#xa0; | &#xa0;
+  <a href="#getting-started">Getting Started</a> &#xa0; | &#xa0;
+  <a href="#requirements">Requirements</a> &#xa0; | &#xa0;
+  <a href="#project-structure">Structure</a> &#xa0; | &#xa0;
+  <a href="#faq">FAQ</a> &#xa0; | &#xa0;
+  <a href="#contributing">Contributing</a> &#xa0; | &#xa0;
+  <a href="#license">License</a>
+</p>
 
-## :dart: About ##
+---
 
-Describe your project
+## ✨ Features
 
-## :sparkles: Features ##
+- **Visual editor** for your `php.ini` file
+- **Enable/disable PHP extensions** with one click
+- **Xdebug toggle** and status
+- **Instant search/filter** for extensions
+- **Safe backup/restore** of your configuration
+- **Beautiful glassmorphism UI**
+- **Works offline** (no internet required after install)
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+---
 
-## :rocket: Technologies ##
+## 🚀 Getting Started
 
-The following tools were used in this project:
+### 1. Download & Install
 
-- [Expo](https://expo.io/)
-- [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
-- [TypeScript](https://www.typescriptlang.org/)
+- Download the latest release from the [Releases page](https://github.com/xFantooo/PHP.ini-Editor/releases)
+- Extract the archive and run `PHPiniEditor.exe`
 
-## :white_check_mark: Requirements ##
+### 2. Usage
 
-Before starting :checkered_flag:, you need to have [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+1. **Select your `php.ini` file** (button in the header)
+2. **Browse and edit**:
+   - Use the tabs to switch between Xdebug, Extensions, and Config
+   - Enable/disable extensions with a click
+   - Save your changes
+3. **Backup/Restore** your config at any time
 
-## :checkered_flag: Starting ##
+### 3. Build from Source (Developers)
 
 ```bash
-# Clone this project
-$ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/php-ini-editor
-
-# Access
-$ cd php-ini-editor
+# Clone the repo
+git clone https://github.com/xFantooo/PHP.ini-Editor.git
+cd PHP.ini-Editor
 
 # Install dependencies
-$ yarn
+npm install
 
-# Run the project
-$ yarn start
+# Run in dev mode
+npm start
 
-# The server will initialize in the <http://localhost:3000>
+# Build Windows executable
+npm run package-win
+Build output: dist/PHPiniEditor-win32-x64/
+
+To distribute: zip the folder and send it to your users
+
+🛠️ Requirements
+Windows 10/11 (x64)
+
+Node.js (for development/build only)
+
+PHP must be installed and accessible on your system
+
+📦 Project Structure
+text
+Copier
+Modifier
+php.ini-Editor/
+├── main.js               # Electron main process
+├── preload.js            # Preload script for IPC
+├── renderer.js           # Renderer logic
+├── index.html            # App UI
+├── style.css             # Styles
+├── toggle-xdebug.php     # PHP helper script
+├── package.json          # Project configuration
+├── icon.ico              # App icon
+└── ...
+❓ FAQ
+📌 The app doesn’t detect my php.ini, what should I do?
+Make sure PHP is installed and its path is available in your system environment variables.
+
+📌 Is it compatible with Linux or macOS?
+Currently, only Windows is supported. Multi-platform support is planned.
+
+📌 Where is the backup stored?
+In the same folder as your php.ini, a file named php.ini-backup is created.
+
+🗺️ Roadmap
+ Visual php.ini editor
+
+ Xdebug toggle and status
+
+ Extension toggle
+
+ Backup and restore feature
+
+ Multi-language UI (FR/EN)
+
+ PHP.ini validation and cleaning
+
+ Auto-detect php.ini changes
+
+ Support for Linux/macOS
+
+🔒 Security Notice
+⚠️ This tool modifies your php.ini file. Please ensure you make a backup before using it. The app includes a built-in backup feature.
+
+🤝 Contributing
+Pull requests are welcome! For major changes, please open an issue first to discuss the improvements.
+
+🙏 Credits
+Electron
+
+PHP
+
+Icons from Icons8
+
+Built with ❤️ by xFantooo
+
+📄 License
+This project is licensed under the MIT License. See the LICENSE file for details.
 ```
-
-## :memo: License ##
-
-This project is under license from MIT. For more details, see the [LICENSE](LICENSE.md) file.
-
-
-Made with :heart: by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
