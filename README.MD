@@ -59,7 +59,7 @@
 
 ```bash
 # Clone the repo
-git clone https://github.com/xFantooo/PHP.ini-Editor.git
+git clone git@github.com:xFantooo/Php-IniEditor-My-first-App.git
 cd PHP.ini-Editor
 
 # Install dependencies
