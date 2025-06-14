@@ -43,7 +43,7 @@
 
 ### 1. Download & Install
 
-- Download the latest release from the [Releases page](https://github.com/xFantooo/PHP.ini-Editor/releases)
+- Download the latest release from the [Releases page](https://github.com/xFantooo/Php-IniEditor-My-first-App/releases/tag/v1.0.0)
 - Extract the archive and run `PHPiniEditor.exe`
 
 ### 2. Usage
@@ -60,7 +60,7 @@
 ```bash
 # Clone the repo
 git clone git@github.com:xFantooo/Php-IniEditor-My-first-App.git
-cd PHP.ini-Editor
+cd Php-IniEditor-My-first-App/
 
 # Install dependencies
 npm install

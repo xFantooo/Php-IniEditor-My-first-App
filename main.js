@@ -18,7 +18,7 @@ function createWindow() {
     height: 900,
     minWidth: 1000,
     minHeight: 700,
-    icon: path.join(__dirname, "assets", "icon.png"), // Ajoutez une icône
+    icon: path.join(__dirname, "assets", "icon.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: false,
@@ -26,20 +26,17 @@ function createWindow() {
       enableRemoteModule: false,
     },
     titleBarStyle: "default",
-    show: false, // Ne pas afficher immédiatement
+    show: false,
   });
 
-  // Créer le menu de l'application
   createMenu();
 
   mainWindow.loadFile("index.html");
 
-  // Afficher la fenêtre une fois prête
   mainWindow.once("ready-to-show", () => {
     mainWindow.show();
   });
 
-  // Ouvrir DevTools en développement
   if (process.env.NODE_ENV === "development") {
     mainWindow.webContents.openDevTools();
   }
@@ -149,7 +146,6 @@ app.on("window-all-closed", () => {
   }
 });
 
-// Gestion des erreurs non capturées
 process.on("uncaughtException", (error) => {
   console.error("Erreur non capturée:", error);
   dialog.showErrorBox("Erreur critique", error.message);
@@ -159,10 +155,9 @@ process.on("uncaughtException", (error) => {
 ipcMain.handle("run-command", async (event, args, customPath = null) => {
   return new Promise((resolve, reject) => {
     const php = process.platform === "win32" ? "php.exe" : "php";
-    const script = path.join(__dirname, "toggle-xdebug.php");
+    const script = path.resolve(__dirname, "toggle-xdebug.php"); // corrige chemin avec espaces
     const params = customPath ? [...args, `--path=${customPath}`] : args;
 
-    // Timeout pour éviter les blocages
     const timeout = setTimeout(() => {
       reject(new Error("Timeout: La commande a pris trop de temps"));
     }, 30000);
@@ -171,9 +166,8 @@ ipcMain.handle("run-command", async (event, args, customPath = null) => {
       php,
       [script, ...params],
       {
-        shell: true,
         timeout: 30000,
-        maxBuffer: 1024 * 1024, // 1MB buffer
+        maxBuffer: 1024 * 1024,
       },
       (error, stdout, stderr) => {
         clearTimeout(timeout);
