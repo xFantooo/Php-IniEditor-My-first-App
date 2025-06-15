@@ -308,6 +308,7 @@ body::before {
 
 /* Cards */
 .card {
+  width: 1318px;
   background: var(--glass-bg);
   backdrop-filter: var(--backdrop-blur);
   border: 1px solid var(--glass-border);
@@ -692,7 +693,7 @@ textarea::placeholder {
 #phpinfoFrame,
 .phpinfo-frame {
   width: 100%;
-  height: 600px;
+  height: 700px;
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-small);
   background: rgba(255, 255, 255, 0.95);
