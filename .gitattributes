@@ -1,0 +1,2 @@
+*.zip filter=lfs diff=lfs merge=lfs -text
+PHP.ini-EditorV1.0.0.zip
